@@ -1,3 +1,5 @@
+import random
+
 class Card:
     def __init__(self, card):
         self.rank = int(card[:-1])
@@ -105,25 +107,19 @@ class Hand:
         #print({"Hand": ",".join([f"{card.rank}{card.suit}" for card in self.cards]), "type": self.getHandType(), "point": self.point, "zitch point": self.zitch_point})
         return ",".join([f"{card.rank}{card.suit}" for card in self.cards])
 
-class Player:
-    def __init__(self, cards):
-        self.cards = cards
-
-    def __repr__(self):
-        return f"Player"
-
-    def getStrongestHands(self):
-        return "2c,3c,4c,5c,6c,7c,8c,9c,1c,10c,11c,12c,13c"
-
-import random
-
-
-
 class Deck:
     def __init__(self):
         suits = ['s', 'c', 'd', 'h']
         ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-        self.cards = [Card(f"{rank}{suit}") for rank in ranks for suit in suits]
+        self.cards = [f"{rank}{suit}") for rank in ranks for suit in suits]
+
+    def dealRemain(self, players):
+        cards = []
+        for card in self.cards:
+            if card in players:
+                continue
+            cards.append(card)
+        return cards
 
     def getCards(self, cards):
         return [Card(card) for card in cards.split(",")]
@@ -166,3 +162,35 @@ class Deck:
 
     def __repr__(self):
         return f"Deck({self.cards})"
+
+class Poker:
+    def __init__(self):
+        self.deck = Deck()
+
+    def helper(self):
+        print("Generate cards: poker.generateFullHand()")
+        print("Generate hand of five: poker.generateHand(5)")
+        print("Generate hand of three: poker.generateHand(3)")
+
+    def encirclement(self, cards):
+        players = cards.split("|")
+        player1 = Player(players[0])
+        player2 = Player(players[1])
+        player3 = Player(players[2])
+        opponentCards = self.deck.dealRemain(players[0].split(",") + players[1].split(",") + players[2].split(","))
+        opponent = Player(opponentCards)
+        opponent.getStrongestSetting()
+        p1Setting = player1.getBestFitSetting(opponent)
+        p2Setting = player2.getBestFitSetting(opponent)
+        p3Setting = player3.getBestFitSetting(opponent)
+        return p1Setting + "|" + p2Setting + "|" + p3Setting
+    
+    def single(self, cards):
+        player1 = Player(cards)
+        return player1.getStrongestSetting()
+
+    def generateFullHand(self):
+        return self.deck.get_random_cards(13)
+
+    def generateHand(self, cards = 5):
+        return self.deck.get_random_cards(cards)
