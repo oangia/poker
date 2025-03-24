@@ -111,7 +111,7 @@ class Deck:
     def __init__(self):
         suits = ['s', 'c', 'd', 'h']
         ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-        self.cards = [f"{rank}{suit}") for rank in ranks for suit in suits]
+        self.cards = [f"{rank}{suit}" for rank in ranks for suit in suits]
 
     def dealRemain(self, players):
         cards = []
