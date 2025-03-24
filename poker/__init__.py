@@ -163,7 +163,7 @@ class Deck:
     def __repr__(self):
         return f"Deck({self.cards})"
 
-class Poker:
+class Game:
     def __init__(self):
         self.deck = Deck()
 
