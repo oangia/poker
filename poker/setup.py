@@ -7,7 +7,7 @@ LONG_DESCRIPTION = 'My first Python package with a slightly longer description'
 # Setting up
 setup(
        # the name must match the folder name 'verysimplemodule'
-        name="mypoker", 
+        name="poker", 
         version=VERSION,
         author="Me",
         author_email="blogphp.biz@gmail.com",
