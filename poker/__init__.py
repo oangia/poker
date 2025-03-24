@@ -188,7 +188,7 @@ class Game:
         return p1Setting + "|" + p2Setting + "|" + p3Setting
     
     def single(self, cards):
-        player1 = Player(cards)
+        player1 = self.playerClass(cards)
         return player1.getStrongestSetting()
 
     def generateFullHand(self):
