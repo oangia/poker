@@ -167,6 +167,8 @@ class Game:
     def __init__(self):
         self.deck = Deck()
 
+    def setPlayerClass(self, className):
+        self.playerClass = className
     def helper(self):
         print("Generate cards: poker.generateFullHand()")
         print("Generate hand of five: poker.generateHand(5)")
@@ -174,11 +176,11 @@ class Game:
 
     def encirclement(self, cards):
         players = cards.split("|")
-        player1 = Player(players[0])
-        player2 = Player(players[1])
-        player3 = Player(players[2])
+        player1 = self.playerClass(players[0])
+        player2 = self.playerClass(players[1])
+        player3 = self.playerClass(players[2])
         opponentCards = self.deck.dealRemain(players[0].split(",") + players[1].split(",") + players[2].split(","))
-        opponent = Player(opponentCards)
+        opponent = self.playerClass(opponentCards)
         opponent.getStrongestSetting()
         p1Setting = player1.getBestFitSetting(opponent)
         p2Setting = player2.getBestFitSetting(opponent)
