@@ -1,5 +1,5 @@
-import HandDetectV2
-import HandDetect
+from poker.HandDetectV2 import HandDetectV2
+from poker.HandDetect import HandDetect
 
 class Hand:
     def __init__(self, cards, detect="V2"):
