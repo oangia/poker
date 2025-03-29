@@ -11,7 +11,7 @@ class HandDetect:
     MAX_POWER = 4097
     MAX_ZITCH_POWER = 7937
 
-    def __init__(self, cards):
+    def __init__(self):
         pass
 
     def detect(self, cards):
