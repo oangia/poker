@@ -20,7 +20,7 @@ class HandDetect:
         self.zitch_point = 0
         self.handType = self.detectHand()
         self.point = self.calculatePoint()
-        return self.point
+        return self.handType * 10 + self.point
 
     def detectHand(self):
         ranks = [card.rank for card in self.cards]
