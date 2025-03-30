@@ -10,6 +10,7 @@ class Poker:
     def __init__(self):
         pass
 
+    @staticmethod
     def compareTwoSettings(player1, player2):
         p1Cards = [Card(card) for card in player1]
         p2Cards = [Card(card) for card in player2]
