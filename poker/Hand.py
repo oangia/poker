@@ -9,3 +9,10 @@ class Hand:
         else:
             handDetect = HandDetect()
         self.point = handDetect.detect(self.cards)
+
+    def compare(self, opponent):
+        if self.point > opponent.point:
+            return 1
+        if self.point < opponent.point:
+            return -1
+        return 0
