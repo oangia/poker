@@ -4,5 +4,8 @@ class Setting:
         self.middle = middle
         self.front = front
 
-    def compare(opponent):
-        return 1
+    def compare(self, opponent, resType="detail"):
+        if resType == "detail":
+            return [self.back.compare(opponent.back), self.middle.compare(opponent.middle), self.front.compare(opponent.front)]
+        elif resType == "sum":
+            return sum([self.back.compare(opponent.back), self.middle.compare(opponent.middle), self.front.compare(opponent.front)])
