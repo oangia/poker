@@ -1,5 +1,6 @@
 from poker.Card import Card
 from poker.Hand import Hand
+from poker.Setting import Setting
 from itertools import combinations
 
 class Player:
