@@ -9,7 +9,7 @@ class Card:
         return f"'{self.rank}{self.suit}'"
 
 class Hand:
-    def __init__(self, cards, handDetect=handDetect):
+    def __init__(self, cards, handDetect):
         self.cards = cards
         self.point = handDetect.detect(self.cards)
         
