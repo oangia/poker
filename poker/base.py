@@ -5,8 +5,10 @@ class Card:
         self.point = self.rank - 2 if self.rank != 1 else 12
         self.power = 2 ** self.point
 
+    def toStr(self):
+        return f"{self.rank}{self.suit}"
     def __repr__(self):
-        return f"'{self.rank}{self.suit}'"
+        return f"{self.rank}{self.suit}"
 
 class Hand:
     def __init__(self, cards, handDetect):
@@ -19,6 +21,12 @@ class Hand:
         if self.point < opponent.point:
             return -1
         return 0
+
+    def toStr(self):
+        str = []
+        for card in self.cards:
+            str.append(card.toStr())
+        return ",".join(str)
       
 class Setting:
     def __init__(self, back, middle, front):
@@ -35,6 +43,9 @@ class Setting:
         if self.back.point >= self.middle.point and self.middle.point > self.front.point:
             return True
         return False
+
+    def __repr__(self):
+        return self.back.toStr() + "," + self.middle.toStr() + "," + self.back.toStr()
 
 from itertools import combinations
 from poker.HandDetect import HandDetect
