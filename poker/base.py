@@ -42,7 +42,7 @@ class Setting:
         return False
 
     def __repr__(self):
-        return self.back.toStr() + "," + self.middle.toStr() + "," + self.back.toStr()
+        return ",".join([self.back.toStr(), self.middle.toStr(), self.back.toStr()])
 
 from itertools import combinations
 from poker.HandDetect import HandDetect
