@@ -23,10 +23,7 @@ class Hand:
         return 0
 
     def toStr(self):
-        str = []
-        for card in self.cards:
-            str.append(card.toStr())
-        return ",".join(str)
+        return ",".join(card.toStr() for card in self.cards)
       
 class Setting:
     def __init__(self, back, middle, front):
