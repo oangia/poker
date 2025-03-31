@@ -37,6 +37,7 @@ class Setting:
         return False
 
 from itertools import combinations
+from poker.HandDetect import HandDetect
 
 class Player:
     def __init__(self, cards):
@@ -53,9 +54,13 @@ class Player:
             if setting.compare(opponentBestSetting) == 1:
                 return setting
 
-    def brute(self):
-        hands = [Hand(cards, detect="V1") for cards in list(combinations(self.cards, 5))]
+    def generateAllHands(self):
+        handDetect = HandDetect()
+        hands = [Hand(cards, detect=handDetect) for cards in list(combinations(self.cards, 5))]
         self.hands = sorted(hands, key=lambda hand: (hand.point), reverse=True)
+
+    def brute(self):
+        self.generateAllHand()
         settings = []
         handsLen = len(self.hands)
         for i in range(handsLen):
