@@ -60,7 +60,7 @@ class Player:
         self.hands = sorted(hands, key=lambda hand: (hand.point), reverse=True)
 
     def brute(self):
-        self.generateAllHand()
+        self.generateAllHands()
         settings = []
         handsLen = len(self.hands)
         for i in range(handsLen):
