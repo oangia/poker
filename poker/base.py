@@ -11,7 +11,7 @@ class Card:
 class Hand:
     def __init__(self, cards, detect=handDetect):
         self.cards = cards
-        self.point = handDetect.detect(self.cards)
+        self.point = detect.detect(self.cards)
         
     def compare(self, opponent):
         if self.point > opponent.point:
