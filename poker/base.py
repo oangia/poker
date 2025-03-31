@@ -9,9 +9,9 @@ class Card:
         return f"'{self.rank}{self.suit}'"
 
 class Hand:
-    def __init__(self, cards, detect=handDetect):
+    def __init__(self, cards, handDetect=handDetect):
         self.cards = cards
-        self.point = detect.detect(self.cards)
+        self.point = handDetect.detect(self.cards)
         
     def compare(self, opponent):
         if self.point > opponent.point:
@@ -56,7 +56,7 @@ class Player:
 
     def generateAllHands(self):
         handDetect = HandDetect()
-        hands = [Hand(cards, detect=handDetect) for cards in list(combinations(self.cards, 5))]
+        hands = [Hand(cards, handDetect=handDetect) for cards in list(combinations(self.cards, 5))]
         self.hands = sorted(hands, key=lambda hand: (hand.point), reverse=True)
 
     def brute(self):
