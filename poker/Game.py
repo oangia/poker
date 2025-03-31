@@ -1,5 +1,5 @@
 from poker.Deck import Deck
-from poker.Player import Player
+from poker.base import Player
 
 class Game:
     def __init__(self):
