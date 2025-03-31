@@ -44,24 +44,38 @@ class Setting:
     def __repr__(self):
         return ",".join([self.back.toStr(), self.middle.toStr(), self.back.toStr()])
 
-from itertools import combinations
-from poker.HandDetect import HandDetect
-
 class Player:
     def __init__(self, cards):
         self.cards = [Card(card) for card in cards]
+        self.algo = BruteForce(self.cards)
 
-    def getStrongestSetting(self, algo="brute"):
-        settings = self.brute()
-        return settings[0]
+    def getStrongestSetting(self):
+        self.settings = self.algo.getAllSettings()
+        return self.settings[0]
 
     def getBestFitSetting(self, opponent):
         opponentBestSetting = opponent.getStrongestSetting()
-        settings = self.brute()
-        for setting in settings:
+        self.settings = self.algo.getAllSettings()
+        for setting in self.settings:
             if setting.compare(opponentBestSetting) == 1:
                 return setting
 
+from itertools import combinations
+from poker.HandDetect import HandDetect
+class BruteForce:
+    def __init__(self, cards):
+        self.cards = cards
+
+    def getAllSettings(self):
+        self.generateAllHands()
+        self.generateAllSettings()
+        newSettings = [self.settings[0]]
+        settingsLen = len(self.settings)
+        for i in range(settingsLen - 1):
+            if -1 in newSettings[-1].compare(self.settings[i + 1]):
+                newSettings.append(self.settings[i+1])
+        return newSettings
+         
     def generateAllHands(self):
         handDetect = HandDetect()
         hands = [Hand(cards, handDetect=handDetect) for cards in list(combinations(self.cards, 5))]
@@ -91,12 +105,4 @@ class Player:
                         j += 1
                 self.settings.append(Setting(back, middle, middle))
     
-    def brute(self):
-        self.generateAllHands()
-        self.generateAllSettings()
-        newSettings = [self.settings[0]]
-        settingsLen = len(self.settings)
-        for i in range(settingsLen - 1):
-            if -1 in newSettings[-1].compare(self.settings[i + 1]):
-                newSettings.append(self.settings[i+1])
-        self.settings = newSettings
+   
