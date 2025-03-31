@@ -59,9 +59,8 @@ class Player:
         hands = [Hand(cards, handDetect=handDetect) for cards in list(combinations(self.cards, 5))]
         self.hands = sorted(hands, key=lambda hand: (hand.point), reverse=True)
 
-    def brute(self):
-        self.generateAllHands()
-        settings = []
+    def generateAllSettings(self):
+        self.settings = []
         handsLen = len(self.hands)
         for i in range(handsLen):
             if self.hands[i].point < 10:
@@ -82,5 +81,14 @@ class Player:
                     if card not in back.cards and card not in middle.cards:
                         front[j] = card
                         j += 1
-                settings.append(Setting(back, middle, middle))
-        return settings
+                self.settings.append(Setting(back, middle, middle))
+    
+    def brute(self):
+        self.generateAllHands()
+        self.generateAllSettings()
+        newSettings = [self.settings[0]]
+        settingsLen = len(self.settings)
+        for i in range(settingsLen - 1):
+            if -1 in self.settings[i].compare(self.settings[i + 1]):
+                newSettings.append(self.settings[i+1])
+        self.settings = newSettings
