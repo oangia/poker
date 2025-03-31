@@ -89,6 +89,6 @@ class Player:
         newSettings = [self.settings[0]]
         settingsLen = len(self.settings)
         for i in range(settingsLen - 1):
-            if -1 in self.settings[i].compare(self.settings[i + 1]):
+            if -1 in newSettings[-1].compare(self.settings[i + 1]):
                 newSettings.append(self.settings[i+1])
         self.settings = newSettings
