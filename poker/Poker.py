@@ -3,6 +3,10 @@ class Poker:
     timeStart = 0
 
     @staticmethod
+    def timer():
+        Poker.timeStart = timer.time()
+        
+    @staticmethod
     def track(msg=""):
         if msg=="":
             print(timer.time()-Poker.timeStart)
