@@ -41,3 +41,5 @@ class Poker:
     def testHands(pokerClass):
         for handType in Poker.HANDS:
             Poker.testHand(pokerClass, handType, 1)
+
+poker = Poker
