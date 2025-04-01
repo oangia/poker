@@ -1,4 +1,4 @@
-from poker.base.Card import Card
+from poker.Card import Card
 from itertools import combinations
 import random
 
