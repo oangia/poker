@@ -1,6 +1,13 @@
 import time
 class Poker:
     timeStart = 0
+
+    @staticmethod
+    def track(msg=""):
+        if msg=="":
+            print(timer.time()-Poker.timeStart)
+        else:
+            print(msg + ": " + str(timer.time()-Poker.timeStart))
             
     @staticmethod
     def testFunc(func, loop = 10):
