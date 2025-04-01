@@ -1,8 +1,6 @@
-from poker.base.Card import Card
-
 class Player:
     def __init__(self, cards):
-        self.cards = [Card(card) for card in cards]
+        self.cards = cards
 
     def applyAlgo(self, algo):
         self.settings = algo(self.cards).getAllSettings()
