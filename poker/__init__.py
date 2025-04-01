@@ -2,19 +2,6 @@ from poker.base import Card, Hand, Setting, Player, Deck
 import time
 class Poker:
     timeStart = 0
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def time():
-        Poker.timeStart = time.time()
-        
-    @staticmethod
-    def track(msg=""):
-        if msg=="":
-            print(time.time()-Poker.timeStart)
-        else:
-            print(msg + ": " + str(time.time()-Poker.timeStart))
             
     @staticmethod
     def testFunc(func, loop = 10):
@@ -42,4 +29,11 @@ class Poker:
         for handType in Poker.HANDS:
             Poker.testHand(pokerClass, handType, 1)
 
-poker = Poker
+def time():
+    Poker.timeStart = time.time()
+
+def track(msg=""):
+        if msg=="":
+            print(time.time()-Poker.timeStart)
+        else:
+            print(msg + ": " + str(time.time()-Poker.timeStart))
