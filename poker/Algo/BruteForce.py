@@ -1,11 +1,12 @@
 from itertools import combinations
 from poker.Algo.HandDetect.HandDetect import HandDetect
+from poker.base.Card import Card
 from poker.base.Hand import Hand
 from poker.base.Setting import Setting
 
 class BruteForce:
     def __init__(self, cards):
-        self.cards = cards
+        self.cards = [Card(card) for card in cards]
 
     def getAllSettings(self):
         self.generateAllHands()
