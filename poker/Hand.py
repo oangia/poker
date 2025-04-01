@@ -1,10 +1,7 @@
 class Hand:
-    MAX_POWER = 4097
-    MAX_ZITCH_POWER = 7809
-    
     def __init__(self, cards):
         self.cards = cards
-        self.point = self.detect()
+        self.point = HandDetect(self.cards).detect()
         
     def compare(self, opponent):
         if self.point > opponent.point:
@@ -15,6 +12,13 @@ class Hand:
 
     def toStr(self):
         return ",".join(card.toStr() for card in self.cards)
+        
+class HandDetect:
+    MAX_POWER = 4097
+    MAX_ZITCH_POWER = 7809
+    
+    def __init__(self, cards):
+        self.cards = cards
 
     def detect(self):
         self.power = sum([card.power for card in self.cards])
@@ -54,8 +58,7 @@ class Hand:
                 self.zitch_point = self.cards[2].power/self.MAX_POWER
 
             return (self.cards[1].power + self.cards[3].power)/self.MAX_ZITCH_POWER
-
-
+        
 class HandType:
     ZITCH = 0
     ONEPAIR = 1
