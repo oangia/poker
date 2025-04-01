@@ -1,7 +1,9 @@
+from poker.base.Hand.HandDetect import HandDetect
+
 class Hand:
-    def __init__(self, cards, handDetect):
+    def __init__(self, cards):
         self.cards = cards
-        self.point = handDetect.detect(self.cards)
+        self.point = HandDetect.detect(self.cards)
         
     def compare(self, opponent):
         if self.point > opponent.point:
