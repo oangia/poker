@@ -1,5 +1,5 @@
 from itertools import combinations
-from poker.HandDetect import HandDetect
+from poker.Algo.HandDetect.HandDetect import HandDetect
 from poker.base.Hand import Hand
 from poker.base.Setting import Setting
 
