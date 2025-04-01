@@ -39,5 +39,5 @@ class HandDetect:
             return HandType.STRAIGHT
         if flush:
             return HandType.FLUSH
-        return ZITCH
+        return HandType.ZITCH
         #return straight * HandType.STRAIGHT + flush * HandType.FLUSH - flush * straight
