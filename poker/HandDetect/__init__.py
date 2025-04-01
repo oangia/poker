@@ -11,7 +11,7 @@ class HandType:
 
 class HandDetect:
     @staticmethod
-    def detect(self, cards):
+    def detect(cards):
         ranks = [card.rank for card in cards]
         count = len(set(ranks))
 
