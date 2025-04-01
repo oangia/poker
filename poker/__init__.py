@@ -1,12 +1,17 @@
 from poker.base import Card, Hand, Setting, Player, Deck
 import time
 class Poker:
+    timeStart = 0
     def __init__(self):
         pass
+
+    @staticmethod
+    def start():
+        Poker.timeStart = time.time()
         
     @staticmethod
     def track(msg=""):
-        print(msg, time.time()-start)
+        print(msg, time.time()-Poker.timeStart)
     @staticmethod
     def testFunc(func, loop = 10):
         results = []
