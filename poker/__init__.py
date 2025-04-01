@@ -14,7 +14,7 @@ class Poker:
         if msg=="":
             print(time.time()-Poker.timeStart)
         else:
-            print(msg + ": " + time.time()-Poker.timeStart)
+            print(msg + ": " + str(time.time()-Poker.timeStart))
             
     @staticmethod
     def testFunc(func, loop = 10):
