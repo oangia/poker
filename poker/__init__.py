@@ -3,7 +3,10 @@ import time
 class Poker:
     def __init__(self):
         pass
-
+        
+    @staticmethod
+    def track(msg=""):
+        print(msg, time.time()-start)
     @staticmethod
     def testFunc(func, loop = 10):
         results = []
