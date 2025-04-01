@@ -6,12 +6,15 @@ class Poker:
         pass
 
     @staticmethod
-    def start():
+    def time():
         Poker.timeStart = time.time()
         
     @staticmethod
     def track(msg=""):
-        print(msg, time.time()-Poker.timeStart)
+        if msg=="":
+            print(time.time()-Poker.timeStart)
+        else:
+            print(msg + ": " + time.time()-Poker.timeStart)
     @staticmethod
     def testFunc(func, loop = 10):
         results = []
