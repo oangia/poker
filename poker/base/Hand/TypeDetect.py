@@ -1,4 +1,4 @@
-from poker.base.HandType import HandType
+from poker.base.Hand.HandType import HandType
 
 class TypeDetect:
     @staticmethod
