@@ -80,7 +80,6 @@ class BruteForce:
     def getAllSettings(self):
         self.generateAllHands()
         self.generateAllSettings()
-        print(self.hands)
         newSettings = [self.settings[0]]
         settingsLen = len(self.settings)
         for i in range(settingsLen - 1):
