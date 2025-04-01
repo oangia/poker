@@ -1,5 +1,5 @@
 from poker.base.Card import Card
-from poker.base.BruteForce import BruteForce
+from poker.Algo.BruteForce import BruteForce
 
 class Player:
     def __init__(self, cards):
@@ -8,6 +8,10 @@ class Player:
     def getStrongestSetting(self): 
         self.settings = BruteForce(self.cards).getAllSettings()
         return self.settings[0]
+
+    def getWeakestSetting(self): 
+        self.settings = BruteForce(self.cards).getAllSettings()
+        return self.settings[-1]
 
     def getBestFitSetting(self, opponent):
         opponentBestSetting = opponent.getStrongestSetting()
