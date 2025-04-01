@@ -1,5 +1,4 @@
 from itertools import combinations
-from poker.Algo.HandDetect.HandDetect import HandDetect
 from poker.base.Card import Card
 from poker.base.Hand import Hand
 from poker.base.Setting import Setting
@@ -20,7 +19,7 @@ class BruteForce:
          
     def generateAllHands(self):
         handDetect = HandDetect()
-        hands = [Hand(cards, handDetect=handDetect) for cards in list(combinations(self.cards, 5))]
+        hands = [Hand(cards) for cards in list(combinations(self.cards, 5))]
         self.hands = sorted(hands, key=lambda hand: (hand.point), reverse=True)
 
     def generateAllSettings(self):
