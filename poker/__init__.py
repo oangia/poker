@@ -37,3 +37,11 @@ def track(msg=""):
         print(timer.time()-Poker.timeStart)
     else:
         print(msg + ": " + str(timer.time()-Poker.timeStart))
+
+def getStrongestSetting(cards):
+    player = Player(cards)
+    return player.getStrongestSetting()
+
+def getWeakestSetting(cards):
+    player = Player(cards)
+    return player.getWeakestSetting()
