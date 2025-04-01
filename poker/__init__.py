@@ -1,4 +1,5 @@
 from poker.base import Card, Hand, Setting, Player, Deck
+from poker.Algo.BruteForce import BruteForce
 import time as timer
 class Poker:
     timeStart = 0
@@ -40,8 +41,10 @@ def track(msg=""):
 
 def getStrongestSetting(cards):
     player = Player(cards)
+    player.applyAlgo(BruteForce)
     return player.getStrongestSetting()
 
 def getWeakestSetting(cards):
     player = Player(cards)
+    player.applyAlgo(BruteForce)
     return player.getWeakestSetting()
