@@ -9,36 +9,36 @@ class HandType:
     FOURKIND = 7
     STRAIGHT_FLUSH = 8
 
+class HandDetect:
     def detect(self, cards):
-        ranks = [card.rank for card in cards]
+        ranks, suits = [card.rank, card.suit for card in cards]
         count = len(set(ranks))
 
         if count < 5:
             if count == 4:
-                return self.ONEPAIR
+                return HandType.ONEPAIR
 
             if count == 3:
                 if ranks[0] == ranks[2] or ranks[1] == ranks[3] or ranks[2] == ranks[4]:
-                    return self.THREEKIND
-                return self.TWOPAIR
+                    return HandType.THREEKIND
+                return HandType.TWOPAIR
 
             if count == 2:
                 if ranks[1] == ranks[3]:
-                    return self.FOURKIND
-                return self.FULLHOUSE
+                    return HandType.FOURKIND
+                return HandType.FULLHOUSE
 
-        suits = [card.suit for card in self.cards]
-        self.power = sum([card.power for card in self.cards])
-        self.flush = len(set(suits)) == 1
-        self.straight = self.power in [4111, 31, 62, 124, 248, 496, 992, 1984, 3968, 7936]
+        flush = int(len(set(suits)) == 1)
+        straight = int(sum([card.power for card in self.cards]) in [4111, 31, 62, 124, 248, 496, 992, 1984, 3968, 7936])
 
-        if self.straight and self.flush:
-            return self.STRAIGHT_FLUSH
+        return straight * HandType.STRAIGHT + flush * HandType.FLUSH - flush * straight
+        if straight and flush:
+            return HandType.STRAIGHT_FLUSH
 
-        if self.straight:
-            return self.STRAIGHT
+        if straight:
+            return HandType.STRAIGHT
 
-        if self.flush:
-            return self.FLUSH
+        if flush:
+            return HandType.FLUSH
 
-        return self.ZITCH
+        return HandType.ZITCH
