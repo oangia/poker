@@ -3,6 +3,7 @@ from poker.base.Hand.HandDetect import HandDetect
 class Hand:
     def __init__(self, cards):
         self.cards = cards
+        handDetect = HandDetect()
         self.point = HandDetect.detect(self.cards)
         
     def compare(self, opponent):
