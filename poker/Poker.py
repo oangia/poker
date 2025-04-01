@@ -4,7 +4,7 @@ class Poker:
 
     @staticmethod
     def timer():
-        Poker.timeStart = timer.time()
+        Poker.timeStart = time.time()
         
     @staticmethod
     def track(msg=""):
