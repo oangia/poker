@@ -9,9 +9,9 @@ class Poker:
     @staticmethod
     def track(msg=""):
         if msg=="":
-            print(timer.time()-Poker.timeStart)
+            print(time.time()-Poker.timeStart)
         else:
-            print(msg + ": " + str(timer.time()-Poker.timeStart))
+            print(msg + ": " + str(time.time()-Poker.timeStart))
             
     @staticmethod
     def testFunc(func, loop = 10):
