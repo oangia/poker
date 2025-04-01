@@ -6,7 +6,8 @@ from poker.Setting import Setting
 class Player:
     def __init__(self, cards):
         self.cards = [Card(card) for card in cards]
-        self.settings = self.getAllSettings()
+        self.algo = BruteForce(self.cards)
+        self.settings = self.algo.getAllSettings()
         
     def getStrongestSetting(self): 
         return self.settings[0]
@@ -20,6 +21,10 @@ class Player:
             if setting.compare(opponentBestSetting) == 1:
                 return setting
 
+class BruteForce:
+    def __init__(self, cards):
+        self.cards = cards
+        
     def getAllSettings(self):
         self.generateAllHands()
         self.generateAllSettings()
