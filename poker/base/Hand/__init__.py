@@ -1,3 +1,6 @@
+from poker.base.Hand.HandType import HandType
+from poker.base.Hand.TypeDetect import TypeDetect
+
 class Hand:
     def __init__(self, cards, handDetect):
         self.cards = cards
