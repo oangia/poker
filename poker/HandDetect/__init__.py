@@ -1,13 +1,4 @@
-class HandType:
-    ZITCH = 0
-    ONEPAIR = 1
-    TWOPAIR = 2
-    THREEKIND = 3
-    STRAIGHT = 4
-    FLUSH = 5
-    FULLHOUSE = 6
-    FOURKIND = 7
-    STRAIGHT_FLUSH = 8
+from poker.base import HandType
 
 class HandDetect:
     @staticmethod
@@ -29,7 +20,6 @@ class HandDetect:
                     return HandType.FOURKIND
                 return HandType.FULLHOUSE
 
-        suits = [card.suit for card in cards]
-        flush = int(len(set(suits)) == 1)
-        straight = int(sum([card.power for card in cards]) in [4111, 31, 62, 124, 248, 496, 992, 1984, 3968, 7936])
+        flush = int(len(set([card.suit for card in cards])) == 1)
+        straight = int(ranks[4] - ranks[1] == 4 or (ranks[0] == 1 and ranks[2] == 10))
         return straight * HandType.STRAIGHT + flush * HandType.FLUSH - flush * straight
