@@ -30,7 +30,7 @@ class HandDetect:
 
         suits = [card.suit for card in cards]
         flush = int(len(set(suits)) == 1)
-        straight = int(sum([card.power for card in self.cards]) in [4111, 31, 62, 124, 248, 496, 992, 1984, 3968, 7936])
+        straight = int(sum([card.power for card in cards]) in [4111, 31, 62, 124, 248, 496, 992, 1984, 3968, 7936])
 
         return straight * HandType.STRAIGHT + flush * HandType.FLUSH - flush * straight
         if straight and flush:
