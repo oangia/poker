@@ -10,6 +10,7 @@ class HandType:
     STRAIGHT_FLUSH = 8
 
 class HandDetect:
+    @staticmethod
     def detect(self, cards):
         ranks = [card.rank for card in cards]
         count = len(set(ranks))
