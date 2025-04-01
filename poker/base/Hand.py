@@ -8,6 +8,8 @@ class Hand:
     FULLHOUSE = 6
     FOURKIND = 7
     STRAIGHT_FLUSH = 8
+    MAX_POWER = 4097
+    MAX_ZITCH_POWER = 7809
     
     def __init__(self, cards):
         self.cards = cards
