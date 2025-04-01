@@ -21,5 +21,5 @@ class HandDetect:
                 return HandType.FULLHOUSE
 
         flush = int(len(set([card.suit for card in cards])) == 1)
-        straight = int(ranks[4] - ranks[1] == 4 or (ranks[0] == 1 and ranks[2] == 10))
+        straight = int(ranks[4] - ranks[0] == 4 or (ranks[0] == 1 and ranks[1] == 10))
         return straight * HandType.STRAIGHT + flush * HandType.FLUSH - flush * straight
