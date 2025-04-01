@@ -6,7 +6,7 @@ from poker.Deck import Deck
 from poker.Poker import Poker
 
 def time():
-    Poker.timeStart = timer.time()
+    Poker.timer()
 
 def track(msg=""):
     Poker.track(msg)
