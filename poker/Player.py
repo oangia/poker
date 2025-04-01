@@ -1,7 +1,7 @@
 from itertools import combinations
-from poker.Card import Card
-from poker.Hand import Hand
-from poker.Setting import Setting
+from poker.Core.Card import Card
+from poker.Core.Hand import Hand
+from poker.Core.Setting import Setting
 
 class Player:
     def __init__(self, cards):
