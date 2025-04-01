@@ -1,4 +1,5 @@
 from poker.base import HandType
+from poker.HandDetect.TypeDetect import TypeDetect
 
 class HandDetect:
     MAX_POWER = 4097
@@ -46,27 +47,3 @@ class HandDetect:
                 self.zitch_point = self.cards[2].power/self.MAX_POWER
 
             return (self.cards[1].power + self.cards[3].power)/self.MAX_ZITCH_POWER
-            
-class TypeDetect:
-    @staticmethod
-    def detect(cards):
-        ranks = [card.rank for card in cards]
-        count = len(set(ranks))
-
-        if count < 5:
-            if count == 4:
-                return HandType.ONEPAIR
-
-            if count == 3:
-                if ranks[0] == ranks[2] or ranks[1] == ranks[3] or ranks[2] == ranks[4]:
-                    return HandType.THREEKIND
-                return HandType.TWOPAIR
-
-            if count == 2:
-                if ranks[1] == ranks[3]:
-                    return HandType.FOURKIND
-                return HandType.FULLHOUSE
-
-        flush = int(len(set([card.suit for card in cards])) == 1)
-        straight = int(ranks[4] - ranks[0] == 4 or (ranks[0] == 1 and ranks[1] == 10))
-        return straight * HandType.STRAIGHT + flush * HandType.FLUSH - flush * straight
