@@ -11,7 +11,7 @@ class HandType:
 
 class HandDetect:
     def detect(self, cards):
-        ranks, suits = [card.rank, card.suit for card in cards]
+        ranks = [card.rank for card in cards]
         count = len(set(ranks))
 
         if count < 5:
@@ -28,6 +28,7 @@ class HandDetect:
                     return HandType.FOURKIND
                 return HandType.FULLHOUSE
 
+        suits = [card.suit for card in cards]
         flush = int(len(set(suits)) == 1)
         straight = int(sum([card.power for card in self.cards]) in [4111, 31, 62, 124, 248, 496, 992, 1984, 3968, 7936])
 
