@@ -93,6 +93,7 @@ class BruteForce:
         self.hands = sorted(hands, key=lambda hand: (hand.point), reverse=True)
 
     def generateAllSettings(self):
+        print(self.hands[0].cards, self.hands[0].point)
         self.settings = []
         handsLen = len(self.hands)
         for i in range(handsLen):
