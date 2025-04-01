@@ -1,5 +1,5 @@
-from poker.base import HandType
-from poker.Algo.HandDetect.TypeDetect import TypeDetect
+from poker.base.Hand import HandType
+from poker.base.Hand import TypeDetect
 
 class HandDetect:
     MAX_POWER = 4097
