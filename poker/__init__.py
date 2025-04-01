@@ -1,5 +1,5 @@
 from poker.base import Card, Hand, Setting, Player, Deck
-import time
+import time as timer
 class Poker:
     timeStart = 0
             
@@ -30,10 +30,10 @@ class Poker:
             Poker.testHand(pokerClass, handType, 1)
 
 def time():
-    Poker.timeStart = time.time()
+    Poker.timeStart = timer.time()
 
 def track(msg=""):
-        if msg=="":
-            print(time.time()-Poker.timeStart)
-        else:
-            print(msg + ": " + str(time.time()-Poker.timeStart))
+    if msg=="":
+        print(timer.time()-Poker.timeStart)
+    else:
+        print(msg + ": " + str(timer.time()-Poker.timeStart))
