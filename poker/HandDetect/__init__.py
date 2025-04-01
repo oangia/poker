@@ -9,6 +9,7 @@ class HandDetect:
 
     def detect(self, cards):
         self.cards = cards
+        self.power = sum([card.power for card in self.cards])
         self.handType = 0
         self.zitch_point = 0
         self.handType = TypeDetect.detect(self.cards)
