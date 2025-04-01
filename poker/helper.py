@@ -18,6 +18,9 @@ class Deck:
             cards.append(card)
         return cards
 
+    def getAllPosibleHands(self):
+        return list(combinations(self.cards, 5))
+        
     def getCards(self, cards):
         return [Card(card) for card in cards.split(",")]
 
