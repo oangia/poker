@@ -37,7 +37,7 @@ class BruteForce:
          
     def generateAllHands(self):
         hands = [Hand(cards) for cards in list(combinations(self.cards, 5))]
-        self.hands = sorted(hands, key=lambda hand: (hand.handType), reverse=True)
+        self.hands = sorted(hands, key=lambda hand: (hand.handType, hand.point), reverse=True)
 
     def generateAllSettings(self):
         self.settings = []
