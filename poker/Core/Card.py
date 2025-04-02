@@ -7,5 +7,6 @@ class Card:
 
     def toStr(self):
         return f"{self.rank}{self.suit}"
+        
     def __repr__(self):
         return f"{self.rank}{self.suit}"
