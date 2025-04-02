@@ -24,10 +24,10 @@ class Player:
 class BruteForce:
     def __init__(self, cards):
         self.cards = cards
-        
-    def getAllSettings(self):
         self.generateAllHands()
         self.generateAllSettings()
+        
+    def getAllSettings(self):
         newSettings = [self.settings[0]]
         settingsLen = len(self.settings)
         for i in range(settingsLen - 1):
