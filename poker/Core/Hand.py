@@ -21,34 +21,34 @@ class HandDetect:
     @staticmethod
     def detect(handType, cards):
         if handType in [HandType.ZITCH, HandType.FLUSH, HandType.STRAIGHT, HandType.STRAIGHT_FLUSH]:
-            return sum([card.power for card in self.cards]) * 10/self.MAX_ZITCH_POWER
+            return sum([card.power for card in cards]) * 10 / 7937
 
         if handType in [HandType.THREEKIND, HandType.FULLHOUSE, HandType.FOURKIND]:
-            return self.cards[2].point * 10 / 13
+            return cards[2].point / 1.3
 
         if handType == HandType.ONEPAIR:
-            if self.cards[0].rank == self.cards[1].rank:
-                zitch_point = (self.cards[2].power + self.cards[3].power + self.cards[4].power)/self.MAX_ZITCH_POWER
-                return self.cards[0].point * 10 / 14 + zitch_point
-            if self.cards[1].rank == self.cards[2].rank:
-                zitch_point = (self.cards[0].power + self.cards[3].power + self.cards[4].power)/self.MAX_ZITCH_POWER
-                return self.cards[2].point * 10 / 14 + zitch_point
-            if self.cards[2].rank == self.cards[3].rank:
-                zitch_point = (self.cards[0].power + self.cards[1].power + self.cards[4].power)/self.MAX_ZITCH_POWER
-                return self.cards[3].point * 10 / 14 + zitch_point
-            if self.cards[3].rank == self.cards[4].rank:
-                zitch_point = (self.cards[0].power + self.cards[1].power + self.cards[2].power)/self.MAX_ZITCH_POWER
-                return self.cards[4].point * 10 / 14 + zitch_point
+            if cards[0].rank == cards[1].rank:
+                zitch_point = cards[2].power + cards[3].power + cards[4].power
+                return cards[0].point / 1.3 + zitch_point / 7169
+            if cards[1].rank == cards[2].rank:
+                zitch_point = cards[0].power + cards[3].power + cards[4].power
+                return cards[2].point / 1.3 + zitch_point / 7169
+            if cards[2].rank == cards[3].rank:
+                zitch_point = cards[0].power + cards[1].power + cards[4].power
+                return cards[3].point / 1.3 + zitch_point / 7169
+            if cards[3].rank == cards[4].rank:
+                zitch_point = cards[0].power + cards[1].power + cards[2].power
+                return cards[4].point / 1.3 + zitch_point / 7169
 
         if handType == HandType.TWOPAIR:
-            if self.cards[0].rank != self.cards[1].rank:
-                zitch_point = self.cards[0].power/self.MAX_POWER
-            elif self.cards[3].rank != self.cards[4].rank:
-                zitch_point = self.cards[4].power/self.MAX_POWER
+            if cards[0].rank != cards[1].rank:
+                zitch_point = cards[0].power
+            elif cards[3].rank != cards[4].rank:
+                zitch_point = cards[4].power
             else:
-                zitch_point = self.cards[2].power/self.MAX_POWER
+                zitch_point = cards[2].power
 
-            return (self.cards[1].power + self.cards[3].power) * 10 / self.MAX_ZITCH_POWER + zitch_point
+            return (cards[1].power + cards[3].power) * 9 / 6145 + zitch_point / 4097
         
 class HandType:
     ZITCH = 0
