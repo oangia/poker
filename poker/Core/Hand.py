@@ -15,9 +15,6 @@ class Hand:
         return ",".join(card.toStr() for card in self.cards)
         
 class HandDetect:
-    MAX_POWER = 4097
-    MAX_ZITCH_POWER = 7937
-    
     @staticmethod
     def detect(handType, cards):
         if handType in [HandType.ZITCH, HandType.FLUSH, HandType.STRAIGHT, HandType.STRAIGHT_FLUSH]:
