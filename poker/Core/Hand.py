@@ -19,7 +19,7 @@ class HandDetect:
     MAX_ZITCH_POWER = 7937
     
     @staticmethod
-    def detect(self, handType, cards):
+    def detect(handType, cards):
         if handType in [HandType.ZITCH, HandType.FLUSH, HandType.STRAIGHT, HandType.STRAIGHT_FLUSH]:
             return sum([card.power for card in self.cards]) * 10/self.MAX_ZITCH_POWER
 
