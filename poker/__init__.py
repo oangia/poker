@@ -1,20 +1,13 @@
-from poker.Core.Card import Card
-from poker.Core.Hand import Hand
-from poker.Core.Setting import Setting
-from poker.Player import Player
-from poker.Deck import Deck
-from poker.Poker import Poker
+from gtts import gTTS
+from pydub import AudioSegment
 
-def time():
-    Poker.timer()
+def textToSpeech(text, audio_file):
+    tts = gTTS(text)
+    tts.save(audio_file)
 
-def track(msg=""):
-    Poker.track(msg)
-
-def getStrongestSetting(cards):
-    player = Player(cards)
-    return player.getStrongestSetting()
-
-def getWeakestSetting(cards):
-    player = Player(cards)
-    return player.getWeakestSetting()
+def slow_down_audio(input_file, output_file, speed=0.5):
+    sound = AudioSegment.from_file(input_file)
+    slowed_sound = sound._spawn(sound.raw_data, overrides={
+        "frame_rate": int(sound.frame_rate * speed)
+    }).set_frame_rate(sound.frame_rate)
+    slowed_sound.export(output_file, format="mp3")
