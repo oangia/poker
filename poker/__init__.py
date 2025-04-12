@@ -7,29 +7,6 @@ import numpy as np
 from moviepy.editor import *
 from pydub import AudioSegment
 
-def make_video(video_path, audio, bg_music, texts):
-    audio = process_audio(audio, bg_music)
-    video = process_video(video_path)
-    video_duration = video.duration
-    audio_duration = audio.duration
-    
-    # If audio is longer than video, loop the video
-    if audio_duration > video_duration:
-        num_loops = int(audio_duration // video_duration) + 1  # Loop video enough times
-        video = video.fx(vfx.loop, num_loops)  # Loop the video
-        
-    # Trim the video to match audio duration
-    video = video.subclip(0, audio_duration)
-    
-    # Final video
-    final_video = video.set_audio(audio)
-    text_clips = add_text_to_video(texts, final_video)
-
-    # Combine the video with all text clips
-    final = CompositeVideoClip([final_video] + text_clips)
-    # Output final video
-    final.write_videofile("output_video.mp4", codec="libx264", audio_codec="aac" , logger=None)
-
 def process_audio(audio, bg_music):
     narrator = adjust_volume(audio, target_dBFS=-28)
     music = adjust_volume(bg_music, target_dBFS=-39)
