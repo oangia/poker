@@ -2,11 +2,12 @@ from poker.Media import play_audio, play_video
 from poker.File import random_file, file_exists
 from poker.TTS import text_to_speech, speech_to_text
 from poker.Audio import adjust_volume, adjust_speed
-
+from PIL import Image, ImageDraw, ImageFont
+import numpy as np
 from moviepy.editor import *
 from pydub import AudioSegment
 
-def make_video(video_path, audio, bg_music):
+def make_video(video_path, audio, bg_music, texts):
     audio = process_audio(audio, bg_music)
     video = process_video(video_path)
     video_duration = video.duration
@@ -22,9 +23,12 @@ def make_video(video_path, audio, bg_music):
     
     # Final video
     final_video = video.set_audio(audio)
-    
+    text_clips = poker.add_text_to_video(texts, final_video)
+
+    # Combine the video with all text clips
+    final = CompositeVideoClip([final_video] + text_clips)
     # Output final video
-    final_video.write_videofile("output_video.mp4", codec="libx264", audio_codec="aac" , logger=None)
+    final.write_videofile("output_video.mp4", codec="libx264", audio_codec="aac" , logger=None)
 
 def process_audio(audio, bg_music):
     narrator = adjust_volume(audio, target_dBFS=-28)
@@ -46,9 +50,6 @@ def process_video(video_path):
     
     return video_resized
 
-from PIL import Image, ImageDraw, ImageFont
-import numpy as np
-from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 def add_text_to_video(texts, video):
     total_count = 0
     for text in texts:
