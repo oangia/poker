@@ -49,7 +49,7 @@ def process_video(video_path):
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
-def add_text_to_video(texts, audio_duration):
+def add_text_to_video(texts, video):
     total_count = 0
     for text in texts:
         total_count += len(text)
@@ -64,8 +64,8 @@ def add_text_to_video(texts, audio_duration):
         # Create transparent image for each text clip
         img = Image.new("RGBA", (video.w, video.h), (0, 0, 0, 0))
         draw = ImageDraw.Draw(img)
-        start_time = total_count * audio_duration / len(texts)
-        text_duration = len(text) * audio_duration / total_count
+        start_time = total_count * video.duration / len(texts)
+        text_duration = len(text) * video.duration / total_count
         # Center the text
         bbox = draw.textbbox((0, 0), text, font=font)
         text_width = bbox[2] - bbox[0]
