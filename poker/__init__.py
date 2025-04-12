@@ -23,7 +23,7 @@ def make_video(video_path, audio, bg_music, texts):
     
     # Final video
     final_video = video.set_audio(audio)
-    text_clips = poker.add_text_to_video(texts, final_video)
+    text_clips = add_text_to_video(texts, final_video)
 
     # Combine the video with all text clips
     final = CompositeVideoClip([final_video] + text_clips)
