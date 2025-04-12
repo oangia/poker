@@ -61,9 +61,6 @@ def file_exists(filename):
     """
     return os.path.isfile(filename)
 
-def adjust_volume(sound, target_dBFS):
-    change_in_dBFS = target_dBFS - sound.dBFS
-    return sound.apply_gain(change_in_dBFS)
 # Load the audio file
 def normalize_sound(input_file, format="mp3"):
     sound = AudioSegment.from_file(input_file, format=format)
