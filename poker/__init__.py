@@ -1,17 +1,10 @@
 from gtts import gTTS
 from pydub import AudioSegment
 from pydub.effects import normalize
-from IPython.display import Audio, display
-import os
+from poker.Media import play_audio, play_video
+from poker.File import random_file, file_exists
 import speech_recognition as sr
-import random
-from pydub import AudioSegment
-from IPython.display import Video
-
-def random_file(folder_path):
-    files = os.listdir(folder_path)
-    return folder_path + "/" + random.choice(files)
-
+    
 def adjust_volume(audio_file, target_dBFS):
     sound = AudioSegment.from_file(audio_file, format=audio_file[-3:])
     change_in_dBFS = target_dBFS - sound.dBFS
@@ -43,20 +36,7 @@ def slow_down_audio(input_file, output_file, speed=0.5):
     }).set_frame_rate(sound.frame_rate)
     slowed_sound.export(output_file, format="mp3")
     
-def play_audio(file, autoplay=True):
-    display(Audio(file, autoplay=autoplay))
 
-def play_video(file):
-    Video(file)
-    
-def file_exists(filename):
-    """
-    Check if a file exists.
-
-    :param filename: The path to the file to check.
-    :return: True if the file exists, False otherwise.
-    """
-    return os.path.isfile(filename)
 
 # Load the audio file
 def normalize_sound(input_file, format="mp3"):
