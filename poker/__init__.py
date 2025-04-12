@@ -6,7 +6,7 @@ import os
 import speech_recognition as sr
 import random
 from pydub import AudioSegment
-from IPython.display import HTML
+from IPython.display import Video
 
 def random_file(folder_path):
     files = os.listdir(folder_path)
@@ -47,12 +47,8 @@ def play_audio(file, autoplay=True):
     display(Audio(file, autoplay=autoplay))
 
 def play_video(file):
-    HTML("""
-    <video width="640" height="360" controls autoplay>
-      <source src="{file}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    """)
+    Video(file)
+    
 def file_exists(filename):
     """
     Check if a file exists.
