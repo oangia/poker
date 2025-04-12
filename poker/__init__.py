@@ -5,7 +5,17 @@ from IPython.display import Audio, display
 import os
 import speech_recognition as sr
 from pydub import AudioSegment
+from IPython.display import HTML
 
+def random_file(folder_path):
+    files = os.listdir(folder_path)
+    return folder_path + "/" + random.choice(files)
+
+def adjust_volume(audio_file, target_dBFS):
+    sound = AudioSegment.from_file(audio_file, format=audio_file[-3:])
+    change_in_dBFS = target_dBFS - sound.dBFS
+    return sound.apply_gain(change_in_dBFS)
+    
 def speech_to_text(file, format):
     audio = AudioSegment.from_file(file, format=format)
     audio.export("converted.wav", format="wav")
@@ -32,9 +42,16 @@ def slow_down_audio(input_file, output_file, speed=0.5):
     }).set_frame_rate(sound.frame_rate)
     slowed_sound.export(output_file, format="mp3")
     
-def play(file, autoplay=True):
-  display(Audio(file, autoplay=autoplay))
+def play_audio(file, autoplay=True):
+    display(Audio(file, autoplay=autoplay))
 
+def play_video(file):
+    HTML("""
+    <video width="640" height="360" controls autoplay>
+      <source src="{file}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    """)
 def file_exists(filename):
     """
     Check if a file exists.
