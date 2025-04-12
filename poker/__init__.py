@@ -65,7 +65,6 @@ def add_text_to_video(texts, video):
         # Create transparent image for each text clip
         img = Image.new("RGBA", (video.w, video.h), (0, 0, 0, 0))
         draw = ImageDraw.Draw(img)
-        start_time = total_count * video.duration / len(texts)
         text_duration = len(text) * video.duration / total_count
         # Center the text
         bbox = draw.textbbox((0, 0), text, font=font)
@@ -89,7 +88,7 @@ def add_text_to_video(texts, video):
 
         # Add to the list of text clips
         text_clips.append(txt_clip)
-        current_time += text_duration + 0.2
+        current_time += text_duration
 
     return text_clips
 
