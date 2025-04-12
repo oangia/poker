@@ -3,6 +3,9 @@ from poker.File import random_file, file_exists
 from poker.TTS import text_to_speech, speech_to_text
 from poker.Audio import adjust_volume, adjust_speed
 
+from moviepy.editor import *
+from pydub import AudioSegment
+
 def make_video(video_path, audio, bg_music):
     narrator = poker.adjust_volume(audio, target_dBFS=-28)
     music = poker.adjust_volume(bg_music, target_dBFS=-39)
