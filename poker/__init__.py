@@ -1,46 +1,28 @@
-from gtts import gTTS
-from pydub import AudioSegment
-from pydub.effects import normalize
 from poker.Media import play_audio, play_video
 from poker.File import random_file, file_exists
-import speech_recognition as sr
-    
-def adjust_volume(audio_file, target_dBFS):
-    sound = AudioSegment.from_file(audio_file, format=audio_file[-3:])
-    change_in_dBFS = target_dBFS - sound.dBFS
-    return sound.apply_gain(change_in_dBFS)
-    
-def speech_to_text(file, format):
-    audio = AudioSegment.from_file(file, format=format)
-    audio.export("converted.wav", format="wav")
-    recognizer = sr.Recognizer()
-    with sr.AudioFile("converted.wav") as source:
-        audio = recognizer.record(source)
-    
-    try:
-        text = recognizer.recognize_google(audio)
-        return text
-    except sr.UnknownValueError:
-        print("Could not understand audio")
-    except sr.RequestError:
-        print("Could not request results")
-    
-def text_to_speech(text, audio_file):
-    tts = gTTS(text)
-    tts.save(audio_file)
+from poker.TTS import text_to_speech, speech_to_text
+from poker.Audio import adjust_volume, adjust_speed
 
-def slow_down_audio(input_file, output_file, speed=0.5):
-    sound = AudioSegment.from_file(input_file)
-    slowed_sound = sound._spawn(sound.raw_data, overrides={
-        "frame_rate": int(sound.frame_rate * speed)
-    }).set_frame_rate(sound.frame_rate)
-    slowed_sound.export(output_file, format="mp3")
+def make_video(video_path, audio, bg_music):
+    narrator = poker.adjust_volume(audio, target_dBFS=-28)
+    music = poker.adjust_volume(bg_music, target_dBFS=-39)
+    final_audio = narrator.overlay(music)
+    final_audio.export("output_audio.wav", format="wav")
+    final_audio = AudioFileClip("output_audio.wav")
+    video = VideoFileClip(video_path)
+    video_duration = video.duration
+    audio_duration = final_audio.duration
     
-
-
-# Load the audio file
-def normalize_sound(input_file, format="mp3"):
-    sound = AudioSegment.from_file(input_file, format=format)
-    normalized_sound = adjust_volume(sound, -22.0)  # Normalize to -20 dBFS
-    normalized_sound.export("output_audio.wav", format="wav")
-    return "output_audio.wav"
+    # If audio is longer than video, loop the video
+    if audio_duration > video_duration:
+        num_loops = int(audio_duration // video_duration) + 1  # Loop video enough times
+        video = video.fx(vfx.loop, num_loops)  # Loop the video
+        
+    # Trim the video to match audio duration
+    video = video.subclip(0, audio_duration)
+    
+    # Final video
+    final_video = video.set_audio(final_audio)
+    
+    # Output final video
+    final_video.write_videofile("output_video.mp4", codec="libx264", audio_codec="aac" , logger=None)
