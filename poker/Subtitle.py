@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
+import numpy as np
 
 class Subtitle:
     def __init__(self, texts, duration):
