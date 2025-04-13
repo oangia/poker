@@ -2,7 +2,7 @@ from pydub import AudioSegment
 from moviepy.editor import AudioFileClip
 from poker.File import random_file
 import speech_recognition as sr
-from IPython.display import Audio
+from IPython.display import Audio as DisplayAudio
 
 class Audio:
     def __init__(self, path, target_dBFS=None):
@@ -44,5 +44,5 @@ class Audio:
             print("Could not request results")
 
     def play_audio(autoplay=True):
-        display(Audio(self.path, autoplay=autoplay))
+        display(DisplayAudio(self.path, autoplay=autoplay))
         
