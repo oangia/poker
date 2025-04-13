@@ -24,8 +24,8 @@ class Subtitle:
             bbox = draw.textbbox((0, 0), text, font=self.font)
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
-            x = (video.w - text_width) // 2
-            y = (video.h - text_height) // 2
+            x = (video_width - text_width) // 2
+            y = (video_height - text_height) // 2
     
             # Add a solid rectangle background behind the text (semi-transparent)
             background_padding = 10  # Space between text and background
