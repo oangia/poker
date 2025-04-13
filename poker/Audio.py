@@ -2,9 +2,11 @@ from pydub import AudioSegment
 from moviepy.editor import AudioFileClip
 from poker.File import random_file
 import speech_recognition as sr
+from IPython.display import Audio
 
 class Audio:
     def __init__(self, path):
+        self.path = path
         self.audio = AudioSegment.from_file(path, format=audio_file[-3:])
 
     @staticmethod
@@ -39,3 +41,6 @@ class Audio:
         except sr.RequestError:
             print("Could not request results")
 
+    def play_audio(autoplay=True):
+        display(Audio(self.path, autoplay=autoplay))
+        
