@@ -12,7 +12,7 @@ class Video:
         
         # Resize video to fit 9:16 aspect ratio (resize while maintaining the center)
         self.video = video.resize(height=target_height)
-        self.video = self.video.crop(x1=(video_resized.w - target_width) // 2, x2=(self.video.w + target_width) // 2)
+        self.video = self.video.crop(x1=(self.video.w - target_width) // 2, x2=(self.video.w + target_width) // 2)
 
     def adjust_duration(self, audio_duration):
         # If audio is longer than video, loop the video
