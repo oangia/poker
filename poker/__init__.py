@@ -61,7 +61,7 @@ def add_text_to_video(texts, video):
 
         # Convert image to clip
         text_img = np.array(img)
-        txt_clip = ImageClip(text_img, duration=text_duration - 0.2).set_start(current_time)
+        txt_clip = ImageClip(text_img, duration=text_duration - 0.1).set_start(current_time)
 
         # Add to the list of text clips
         text_clips.append(txt_clip)
