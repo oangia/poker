@@ -28,4 +28,4 @@ class Video:
         self.video = self.video.subclip(0, audio_duration)
 
     def set_audio(self, audio):
-        self.video.set_audio(audio)
+        self.video = self.video.set_audio(audio)
