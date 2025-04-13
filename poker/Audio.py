@@ -7,7 +7,7 @@ from IPython.display import Audio
 class Audio:
     def __init__(self, path):
         self.path = path
-        self.audio = AudioSegment.from_file(path, format=audio_file[-3:])
+        self.audio = AudioSegment.from_file(path, format=path[-3:])
 
     @staticmethod
     def get_random(path):
