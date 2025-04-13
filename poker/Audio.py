@@ -5,13 +5,15 @@ import speech_recognition as sr
 from IPython.display import Audio
 
 class Audio:
-    def __init__(self, path):
+    def __init__(self, path, target_dBFS=None):
         self.path = path
         self.audio = AudioSegment.from_file(path, format=path[-3:])
-
+        if target_dBFS not None:
+            self.adjust_volume(target_dBFS)
+        
     @staticmethod
-    def get_random(path):
-        return Audio(random_file(path))
+    def get_random(path, target_dBFS=None):
+        return Audio(random_file(path), target_dBFS)
 
     def overlay(self, background, output="output_audio.wav"):
         final_audio = self.audio.overlay(background.audio)
