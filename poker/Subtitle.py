@@ -19,7 +19,7 @@ class Subtitle:
             # Create transparent image for each text clip
             img = Image.new("RGBA", (video_width, video_height), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
-            text_duration = len(text) * self.duration / total_count
+            text_duration = len(text) * self.duration / self.total_count
             # Center the text
             bbox = draw.textbbox((0, 0), text, font=font)
             text_width = bbox[2] - bbox[0]
