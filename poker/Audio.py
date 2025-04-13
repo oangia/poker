@@ -43,6 +43,6 @@ class Audio:
         except sr.RequestError:
             print("Could not request results")
 
-    def play_audio(autoplay=True):
+    def play_audio(self, autoplay=True):
         display(DisplayAudio(self.path, autoplay=autoplay))
         
