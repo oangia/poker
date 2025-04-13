@@ -21,7 +21,7 @@ class Subtitle:
             draw = ImageDraw.Draw(img)
             text_duration = len(text) * self.duration / self.total_count
             # Center the text
-            bbox = draw.textbbox((0, 0), text, font=font)
+            bbox = draw.textbbox((0, 0), text, font=self.font)
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
             x = (video.w - text_width) // 2
@@ -34,7 +34,7 @@ class Subtitle:
                 fill=(0, 0, 0, 64)  # Semi-transparent black background (RGBA)
             )
     
-            draw.text((x, y), text, font=font, fill="white")
+            draw.text((x, y), text, font=self.font, fill="white")
     
             # Convert image to clip
             text_img = np.array(img)
