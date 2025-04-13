@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+from moviepy.editor import ImageClip
 
 class Subtitle:
     def __init__(self, texts, duration):
