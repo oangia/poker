@@ -8,7 +8,7 @@ class Audio:
     def __init__(self, path, target_dBFS=None):
         self.path = path
         self.audio = AudioSegment.from_file(path, format=path[-3:])
-        if target_dBFS not None:
+        if target_dBFS is not None:
             self.adjust_volume(target_dBFS)
         
     @staticmethod
