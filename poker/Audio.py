@@ -18,17 +18,17 @@ class Audio:
         final_audio.export(output, format=output[-3:])
         return Video(output)
 
-    def adjust_volume(target_dBFS):
+    def adjust_volume(self, target_dBFS):
         change_in_dBFS = target_dBFS - self.audio.dBFS
         self.audio = self.audio.apply_gain(change_in_dBFS)
         
-    def adjust_speed(output_file, speed=0.5):
+    def adjust_speed(self, output_file, speed=0.5):
         slowed_sound = self.audio._spawn(self.audio.raw_data, overrides={
             "frame_rate": int(self.audio.frame_rate * speed)
         }).set_frame_rate(self.audio.frame_rate)
         slowed_sound.export(output_file, format="mp3")
 
-    def speech_to_text():
+    def speech_to_text(self):
         self.audio.export("converted.wav", format="wav")
         recognizer = sr.Recognizer()
         with sr.AudioFile("converted.wav") as source:
