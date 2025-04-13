@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 
 class Subtitle:
-    def __init__(texts, duration):
+    def __init__(self, texts, duration):
         self.texts = texts
         self.duration = duration
         self.total_count = 0
@@ -9,7 +9,7 @@ class Subtitle:
             self.total_count += len(text)
         self.font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", size=40)
       
-    def generate():
+    def generate(self):
         video_width = 1080
         video_height = 1920
         text_clips = []
