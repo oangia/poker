@@ -1,6 +1,7 @@
 from pydub import AudioSegment
 from moviepy.editor import AudioFileClip
 from poker.File import random_file
+import speech_recognition as sr
 
 class Audio:
     def __init__(self, path):
@@ -14,15 +15,6 @@ class Audio:
         final_audio = self.audio.overlay(background.audio)
         final_audio.export(output, format=output[-3:])
         return Video(output)
-        
-    def process_audio(audio, bg_music):
-        narrator = Video(audio)
-        narrator.adjust_volume(target_dBFS=-28)
-        music = Video.get_random(bg_music)
-        music.adjust_volume(target_dBFS=-39)
-        final_audio = narrator.audio.overlay(music.audio)
-        final_audio.export("output_audio.wav", format="wav")
-        return Video("output_audio.wav")
 
     def adjust_volume(target_dBFS):
         change_in_dBFS = target_dBFS - self.audio.dBFS
@@ -34,4 +26,16 @@ class Audio:
         }).set_frame_rate(self.audio.frame_rate)
         slowed_sound.export(output_file, format="mp3")
 
+    def speech_to_text():
+        self.audio.export("converted.wav", format="wav")
+        recognizer = sr.Recognizer()
+        with sr.AudioFile("converted.wav") as source:
+            audio = recognizer.record(source)
+        try:
+            text = recognizer.recognize_google(audio)
+            return text
+        except sr.UnknownValueError:
+            print("Could not understand audio")
+        except sr.RequestError:
+            print("Could not request results")
 
