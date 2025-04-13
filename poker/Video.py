@@ -1,5 +1,5 @@
 from poker.File import random_file
-from moviepy.editor import *
+from moviepy.editor import VideoFileClip, vfx
 
 class Video:
     def __init__(self, path):
