@@ -16,7 +16,7 @@ class Audio:
     def overlay(self, background, output="output_audio.wav"):
         final_audio = self.audio.overlay(background.audio)
         final_audio.export(output, format=output[-3:])
-        return Audio(output)
+        return AudioFileClip(output)
 
     def adjust_volume(self, target_dBFS):
         change_in_dBFS = target_dBFS - self.audio.dBFS
