@@ -15,7 +15,7 @@ class Subtitle:
         text_clips = []
         current_time = 0
         # Create a text clip for each entry in the array
-        for text in texts:
+        for text in self.texts:
             # Create transparent image for each text clip
             img = Image.new("RGBA", (video_width, video_height), (0, 0, 0, 0))
             draw = ImageDraw.Draw(img)
