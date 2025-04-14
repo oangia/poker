@@ -6,6 +6,7 @@ setup(
     install_requires=[
         'pydub',
         'gTTS',
-        'SpeechRecognition'
+        'SpeechRecognition',
+        "moviepy==1.0.3"
     ]
 )
